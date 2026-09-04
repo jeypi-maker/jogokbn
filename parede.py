@@ -4,10 +4,16 @@ class Mapa:
     def __init__(self):
         self.height = 16
         self.width = 16
+        self.mapa_atual = 0
 
     def tem_parede(self, x, y):
         grid_x = x // 8
         grid_y = y // 8
+        if self.mapa_atual == 1:
+            if (grid_x == 5 and grid_y == 10) or (grid_x == 12 and grid_y == 6):
+                return True
+            
+            return False
         
         if grid_x < 0 or grid_x >= 20 or grid_y < 0 or grid_y >= 15:
             return True

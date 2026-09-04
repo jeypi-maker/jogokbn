@@ -7,7 +7,7 @@ class Jogo:
         pyxel.init(160, 120)
         pyxel.load("mygame.pyxres")
         self.cenario = Mapa()
-        self.jogador = Jogador(80, 60)
+        self.jogador = Jogador(80, 60, self.cenario)
         pyxel.run(self.update, self.draw)
     def update(self):
         self.jogador.update()
