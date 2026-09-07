@@ -1,2 +1,2 @@
 # jogokbn
-um jogo muito radical criado por joão pedro, adriel e leonardo
+um jogo muito radical criado por joão pedro, adriel e gabriel
