@@ -1,5 +1,6 @@
 import pyxel
 
+
 class Jogador:
     def __init__(self, x, y, mapa):
         self.x = x
@@ -9,7 +10,6 @@ class Jogador:
         self.sprite1 = 0
         self.direita = True
         self.direcao = 8
-
 
     def update(self):
         self.andando = False
@@ -33,9 +33,11 @@ class Jogador:
         self.y = max(8, min(104, self.y))
 
         if self.direita == False:
-            self.direcao == -8
+            self.direcao = -8
+        else:
+            self.direcao = 8
         if self.andando == True:
-                self.sprite1 = pyxel.frame_count % 3 * 8
-        
+            self.sprite1 = pyxel.frame_count % 2 * 8
+
     def desenha(self):
         pyxel.blt(self.x, self.y, 1, self.sprite1, 0, self.direcao, 8, 0)
