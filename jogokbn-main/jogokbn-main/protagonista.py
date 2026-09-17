@@ -1,6 +1,5 @@
 import pyxel
 
-
 class Jogador:
     def __init__(self, x, y, mapa):
         self.x = x
@@ -10,8 +9,15 @@ class Jogador:
         self.sprite1 = 0
         self.direita = True
         self.direcao = 8
+        self.tiros = []
+        self.velocidade_tiro = 4
+
 
     def update(self):
+
+        dx = 0
+        dy = 0
+
         self.andando = False
         self.sprite1 = 0
         if pyxel.btn(pyxel.KEY_W) is True:
@@ -41,6 +47,29 @@ class Jogador:
         if self.andando is True:
             self.sprite1 = pyxel.frame_count % 2 * 8
 
+        if pyxel.btnp(pyxel.KEY_UP):
+            dy = -1
+        elif pyxel.btnp(pyxel.KEY_DOWN):
+            dy = 1
+        elif pyxel.btnp(pyxel.KEY_LEFT):
+            dx = -1
+        elif pyxel.btnp(pyxel.KEY_RIGHT):
+            dx = 1
+
+        if dx != 0 or dy != 0:
+            self.tiros.append({
+               "x": self.x + 4,
+               "y": self.y + 4,
+               "dx": dx,
+               "dy": dy
+        })
+        for tiro in self.tiros[:]:
+            tiro["x"] += tiro["dx"] * self.velocidade_tiro
+            tiro["y"] += tiro["dy"] * self.velocidade_tiro
+            if (tiro["x"] < 0 or tiro["x"] > pyxel.width or 
+                tiro["y"] < 0 or tiro["y"] > pyxel.height):
+                self.tiros.remove(tiro)
+        
         self.saida()
 
     def saida(self):
@@ -69,3 +98,5 @@ class Jogador:
 
     def desenha(self):
         pyxel.blt(self.x, self.y, 1, self.sprite1, 0, self.direcao, 8, 0)
+        for tiro in self.tiros:
+            pyxel.circ(tiro["x"], tiro["y"], 2, 12)
