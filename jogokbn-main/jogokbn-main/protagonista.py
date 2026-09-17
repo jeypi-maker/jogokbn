@@ -44,7 +44,7 @@ class Jogador:
         self.saida()
 
     def saida(self):
-        if self.x == 144 and self.mapa.mapa_atual == 0:
+        if self.x == 144 and self.y == 56 and self.mapa.mapa_atual == 0:
             self.mapa.mapa_atual = 1
             self.x = 9
         if self.x == 8 and self.y == 56 and self.mapa.mapa_atual == 1:
@@ -69,3 +69,4 @@ class Jogador:
 
     def desenha(self):
         pyxel.blt(self.x, self.y, 1, self.sprite1, 0, self.direcao, 8, 0)
+
