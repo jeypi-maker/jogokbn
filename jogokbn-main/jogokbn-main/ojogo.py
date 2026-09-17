@@ -1,6 +1,7 @@
 import pyxel
 from parede import Mapa
 from protagonista import Jogador
+from inimigo import Inimigo
 
 class Jogo:
     def __init__(self):
@@ -8,14 +9,16 @@ class Jogo:
         pyxel.load("mygame.pyxres")
         self.cenario = Mapa()
         self.jogador = Jogador(80, 60, self.cenario)
+        self.inimigo = Inimigo(40, 40, self.cenario)
         pyxel.run(self.update, self.draw)
     def update(self):
         self.jogador.update()
+        self.inimigo.update() 
         if pyxel.btnp(pyxel.KEY_Q):
             pyxel.quit()
     def draw(self):
         pyxel.cls(0)
         self.cenario.draw()
         self.jogador.desenha()
-
+        self.inimigo.desenha()
 Jogo()
