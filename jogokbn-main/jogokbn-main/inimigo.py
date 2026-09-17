@@ -8,18 +8,41 @@ class Inimigo:
         self.mapa = mapa
         self.velocidade = 1
         self.direcao = 1
+        self.tamanho = 6
+
+    def pode_mover(self, novo_x, novo_y):
+        metade = self.tamanho // 2
+
+        pontos = [
+            (novo_x - metade, novo_y - metade),
+            (novo_x + metade, novo_y - metade),
+            (novo_x - metade, novo_y + metade),
+            (novo_x + metade, novo_y + metade)
+        ]
+
+        for ponto_x, ponto_y in pontos:
+            if self.mapa.tem_parede(ponto_x, ponto_y):
+                return False
+
+        return True
 
     def update(self):
-        proximo_x = self.x + (self.velocidade * self.direcao)
+        novo_x = self.x + (self.velocidade * self.direcao)
 
-        # Verifica se existe uma parede na frente
-        if self.mapa.tem_parede(proximo_x, self.y):
+        if novo_x <= 8 or novo_x >= 144:
             self.direcao *= -1
-        else:
-            self.x = proximo_x
+            return
 
-        # Impede o inimigo de sair da tela
-        self.x = max(8, min(144, self.x))
+        if self.pode_mover(novo_x, self.y):
+            self.x = novo_x
+        else:
+            self.direcao *= -1
 
     def desenha(self):
-        pyxel.rect(self.x - 3, self.y - 3, 6, 6, 8)
+        pyxel.rect(
+            self.x - 3,
+            self.y - 3,
+            self.tamanho,
+            self.tamanho,
+            8
+        )
