@@ -5,6 +5,7 @@ class Mapa:
         self.height = 16
         self.width = 16
         self.mapa_atual = 0
+        self.bau_aberto = False
 
     def tem_parede(self, x, y):
         grid_x = x // 8
@@ -25,13 +26,20 @@ class Mapa:
       
 
     def colide(self, x, y, tamanho=8):
-
         return (
             self.tem_parede(x, y)
             or self.tem_parede(x + tamanho - 1, y)
             or self.tem_parede(x, y + tamanho - 1)
             or self.tem_parede(x + tamanho - 1, y + tamanho - 1)
         )
+
+    def bau(self, x, y, tamanho=8):
+        if self.mapa_atual != 2 or self.bau_aberto:
+            return
+        margem = 2
+        if x + tamanho >= 80 - margem and x <= 88 + margem - 1 and y + tamanho >= 56 - margem and y <= 64 + margem - 1:
+            self.bau_aberto = True
+            pyxel.tilemaps[2].pset(10, 7, (5, 1))
 
     def draw(self):
         pyxel.bltm(0, 0, self.mapa_atual, 0, 0, 160, 120)

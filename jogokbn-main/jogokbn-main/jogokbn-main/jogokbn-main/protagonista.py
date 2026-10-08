@@ -38,6 +38,10 @@ class Jogador:
 
         self.x = max(8, min(144, self.x))
         self.y = max(8, min(104, self.y))
+
+        self.mapa.bau(self.x, self.y)
+        self.direcao = 8 if self.direita else -8
+        
         if self.mapa.mapa_atual == 4:
             self.x = max(64, min(80, self.x))
 
