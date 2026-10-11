@@ -82,10 +82,7 @@ class Jogador:
         if self.invulneravel > 0:
             self.invulneravel -= 1
 
-        self.mapa.bau(self.x, self.y)
-        self.direcao = 8 if self.direita else -8
-        if self.mapa.bau_aberto and not self.bonus_pego:
-            self.bonus_pego = True
+        if self.mapa.bau(self.x, self.y):
             self.vidas += 1
 
         if self.mapa.mapa_atual == 4:

@@ -13,7 +13,7 @@ class Jogo:
         pyxel.load("mygame.pyxres")  
         self.cenario = Mapa()
         self.jogador = Jogador(80, 60, self.cenario)
-        self.inimigo = Inimigo(40, 40, self.cenario)
+        self.inimigo = Inimigo(100, 50, self.cenario)
 
     def update(self):
         if pyxel.btnp(pyxel.KEY_Q):
