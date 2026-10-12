@@ -88,7 +88,6 @@ class Inimigo:
             frame = pyxel.frame_count // 6 % 2 * 8
             pyxel.blt(self.x, self.y, 1, frame, 8, 8, 8, 0)
 
-        # barra de vida do inimigo
         largura = 8 * self.hp / self.hp_max
         pyxel.rect(self.x, self.y - 3, 8, 2, 1)
         pyxel.rect(self.x, self.y - 3, largura, 2, 8)
