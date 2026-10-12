@@ -8,6 +8,7 @@ class Jogo:
     def __init__(self):
         pyxel.init(160, 120)
         self.inicia()
+        self.iniciar = "menu"
         pyxel.run(self.update, self.draw)
 
     def inicia(self):
@@ -21,6 +22,11 @@ class Jogo:
         if pyxel.btnp(pyxel.KEY_Q):
             pyxel.quit()
 
+        if self.iniciar == "menu":
+            if pyxel.btnp(pyxel.KEY_RETURN):
+                self.iniciar = "jogo"
+            return
+
         if self.jogador.morto:
             if pyxel.btnp(pyxel.KEY_R):
                 self.inicia()
@@ -32,6 +38,10 @@ class Jogo:
 
     def draw(self):
         pyxel.cls(0)
+        if self.iniciar == "menu":
+            pyxel.text(60, 56, "SCOOBY DUNGEON", 10)
+            pyxel.text(48, 66, "ENTER para iniciar", 7)
+            return
         self.cenario.draw()
         self.jogador.desenha()
         self.inimigo.desenha()

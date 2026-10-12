@@ -98,8 +98,7 @@ class Chefe:
             return
 
         if self.flash == 0 or pyxel.frame_count % 2 == 0:
-            cor = 8 if self.fase() == 1 else 9
-            pyxel.rect(self.x, self.y, self.w, self.h, cor)
+            pyxel.blt(self.x, self.y, 1, 16, 0, self.w, self.h, 0)
 
         for p in self.projeteis:
             pyxel.circ(p["x"], p["y"], 2, 10)
