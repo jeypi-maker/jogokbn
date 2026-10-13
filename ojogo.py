@@ -16,7 +16,7 @@ class Jogo:
 
     def inicia(self):
         pyxel.load("mygame.pyxres")
-        carregar_trilha()  # A trilha entra APOS carregar os graficos do jogo.
+        carregar_trilha() 
         self.cenario = Mapa()
         self.jogador = Jogador(80, 60, self.cenario)
         self.inimigo = Inimigo(100, 50, self.cenario)
@@ -26,7 +26,7 @@ class Jogo:
 
     def tocar_trilha(self, faixa):
         if self.trilha_atual == faixa:
-            return  # Nao reinicia a musica a cada quadro!
+            return 
         self.trilha_atual = faixa
         if faixa is None:
             pyxel.stop()
@@ -49,7 +49,6 @@ class Jogo:
                 self.inicia()
             return
 
-        # Encerramento musical quando o jogador vence.
         if self.boss.morto:
             self.tocar_trilha(None)
             return
