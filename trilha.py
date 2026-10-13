@@ -58,7 +58,6 @@ def carregar_trilha():
     # boss: drums, parte 2
     pyxel.sounds[63].set('c1 a2 g1 a2 c1 c1 g1 a2 c1 a2 g1 a2 c1 c1 g1 a2 c1 a2 g1 a2 c1 c1 g1 a2 c1 a2 g1 a2 c1 c1 g1 a2', 'n', '64646465646464656464646564646465', "n", 22)
 
-    # Quatro canais: melodia, arpejo, baixo e percussao.
     pyxel.musics[0].set([40, 41], [42, 43], [44, 45], [46, 47])
     pyxel.musics[1].set([48, 49], [50, 51], [52, 53], [54, 55])
     pyxel.musics[2].set([56, 57], [58, 59], [60, 61], [62, 63])
